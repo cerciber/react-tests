@@ -1,7 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import { useEffect } from "react";
 
-function App() {
+function App(props) {
+
+  const [text, setText] = useState("Text 1");
+
+  const click = () => {
+    setText("Text 2");
+  }
+
+  // Acciones justo despues de actualizar un estado 
+	useEffect(() => {
+		console.log("Estado actualizado")
+	}, [text]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -9,14 +23,8 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={click}>Press</button>
+        {text}
       </header>
     </div>
   );
