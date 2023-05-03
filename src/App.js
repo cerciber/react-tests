@@ -1,16 +1,28 @@
-import Child1 from "./Child1";
-import GrandChild1 from "./GrandChild1";
+import { useState } from "react";
+
+const useCounter = () => {
+  const [counter, setCounter] = useState(0)
+
+  const increase = () => setCounter(counter + 1)
+  const decrease = () => setCounter(counter - 1)
+  const reset = () => setCounter(0)
+
+  return {
+    counter, increase, decrease, reset
+  }
+}
 
 function App() {
+
+  const counter1 = useCounter()
+  const counter2 = useCounter()
+
   return (
     <div>
-      <p>Elemento App</p>
-      <Child1>
-        <p>Elemento hijo asigando desde el componente App</p>
-        <GrandChild1>
-          <p>Elemento nieto asigando desde el componente App</p>
-        </GrandChild1>
-      </Child1>
+      <p>{counter1.counter}</p>
+      <button onClick={counter1.increase}>+</button>
+      <p>{counter2.counter}</p>
+      <button onClick={counter2.increase}>+</button>
     </div>
   );
 }
